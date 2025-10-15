@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Clock, Briefcase } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/Logo.png";
+import { Link } from "react-router-dom";
 
 const jobs = [
   {
@@ -82,20 +83,20 @@ const Careers = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src={logo} alt="BuyIt Logo" className="h-8 w-auto mr-2" />
               <span className="text-2xl font-bold text-primary">BuyIt</span>
-            </a>
+            </Link>
             <div className="flex gap-6">
-              <a href="/" className="text-foreground hover:text-primary transition-colors">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors">
                 Home
-              </a>
-              <a href="/careers" className="text-primary font-medium">
+              </Link>
+              <Link to="/careers" className="text-primary font-medium">
                 Careers
-              </a>
-              <a href="/contact" className="text-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link to="/contact" className="text-foreground hover:text-primary transition-colors">
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
         </div>
