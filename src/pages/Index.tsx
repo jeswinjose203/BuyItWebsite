@@ -1,6 +1,7 @@
 import { ShoppingCart, Package, Truck, ArrowRight, Store, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/Logo.png";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const scrollToSection = (id: string) => {
@@ -42,20 +43,14 @@ const Index = () => {
               </button>
             </li>
             <li>
-              <a 
-                href="/careers" 
-                className="hover:text-primary transition-smooth"
-              >
+              <Link to="/careers" className="hover:text-primary transition-smooth">
                 Careers
-              </a>
+              </Link>
             </li>
             <li>
-              <a 
-                href="/contact" 
-                className="hover:text-primary transition-smooth"
-              >
+              <Link to="/contact" className="hover:text-primary transition-smooth">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
           <Button 
