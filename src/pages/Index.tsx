@@ -20,7 +20,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 glass-effect">
+      <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -77,8 +77,8 @@ const Index = () => {
             </div>
           </div>
           {/* Mobile Navigation */}
-          <div className="mobile-nav hidden md:hidden mt-2 pb-4 border-t border-white/10">
-            <div className="flex flex-col gap-4 pt-4 text-white">
+          <div className="mobile-nav md:hidden mt-2 pb-4 border-t border-white/10 bg-background/95">
+            <div className="flex flex-col gap-4 pt-4 text-foreground">
               <button
                 onClick={() => {
                   scrollToSection('features');
