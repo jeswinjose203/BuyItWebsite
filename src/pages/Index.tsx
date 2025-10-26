@@ -24,13 +24,19 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <img src={logo} alt="BuyIt Logo" className="h-20 w-auto" />
+              <img src={logo} alt="BuyIt Logo" className="h-8 w-auto mr-2" />
+              <span className="text-2xl font-bold text-primary">BuyIt</span>
             </div>
-            <ul className="hidden md:flex gap-8 text-white font-medium">
+            <ul className="hidden md:flex gap-8 text-foreground font-medium">
+              <li>
+                <Link to="/" className="text-primary font-medium">
+                  Home
+                </Link>
+              </li>
               <li>
                 <button
                   onClick={() => scrollToSection('features')}
-                  className="hover:text-primary transition-smooth"
+                  className="text-foreground hover:text-primary transition-colors"
                 >
                   Features
                 </button>
@@ -38,18 +44,18 @@ const Index = () => {
               <li>
                 <button
                   onClick={() => scrollToSection('about')}
-                  className="hover:text-primary transition-smooth"
+                  className="text-foreground hover:text-primary transition-colors"
                 >
                   About
                 </button>
               </li>
               <li>
-                <Link to="/careers" className="hover:text-primary transition-smooth">
+                <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-primary transition-smooth">
+                <Link to="/contact" className="text-foreground hover:text-primary transition-colors">
                   Contact
                 </Link>
               </li>
@@ -63,7 +69,7 @@ const Index = () => {
                 Get the App
               </Button>
               <button
-                className="md:hidden text-white"
+                className="md:hidden text-foreground"
                 onClick={() => {
                   const nav = document.querySelector('.mobile-nav');
                   nav?.classList.toggle('hidden');
@@ -77,15 +83,21 @@ const Index = () => {
             </div>
           </div>
           {/* Mobile Navigation */}
-          <div className="mobile-nav md:hidden mt-2 pb-4 border-t border-white/10 bg-background/95">
+          <div className="mobile-nav hidden md:hidden mt-2 pb-4 border-t">
             <div className="flex flex-col gap-4 pt-4 text-foreground">
+              <Link to="/" className="text-primary font-medium" onClick={() => {
+                const nav = document.querySelector('.mobile-nav');
+                nav?.classList.add('hidden');
+              }}>
+                Home
+              </Link>
               <button
                 onClick={() => {
                   scrollToSection('features');
                   const nav = document.querySelector('.mobile-nav');
                   nav?.classList.add('hidden');
                 }}
-                className="text-left hover:text-primary transition-colors"
+                className="text-left text-foreground hover:text-primary transition-colors"
               >
                 Features
               </button>
@@ -95,17 +107,17 @@ const Index = () => {
                   const nav = document.querySelector('.mobile-nav');
                   nav?.classList.add('hidden');
                 }}
-                className="text-left hover:text-primary transition-colors"
+                className="text-left text-foreground hover:text-primary transition-colors"
               >
                 About
               </button>
-              <Link to="/careers" className="hover:text-primary transition-colors" onClick={() => {
+              <Link to="/careers" className="text-foreground hover:text-primary transition-colors" onClick={() => {
                 const nav = document.querySelector('.mobile-nav');
                 nav?.classList.add('hidden');
               }}>
                 Careers
               </Link>
-              <Link to="/contact" className="hover:text-primary transition-colors" onClick={() => {
+              <Link to="/contact" className="text-foreground hover:text-primary transition-colors" onClick={() => {
                 const nav = document.querySelector('.mobile-nav');
                 nav?.classList.add('hidden');
               }}>
