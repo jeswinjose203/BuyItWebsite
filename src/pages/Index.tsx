@@ -21,44 +21,108 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 glass-effect">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center">
-            <img src={logo} alt="BuyIt Logo" className="h-20 w-auto" />
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <img src={logo} alt="BuyIt Logo" className="h-20 w-auto" />
+            </div>
+            <ul className="hidden md:flex gap-8 text-white font-medium">
+              <li>
+                <button
+                  onClick={() => scrollToSection('features')}
+                  className="hover:text-primary transition-smooth"
+                >
+                  Features
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="hover:text-primary transition-smooth"
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <Link to="/careers" className="hover:text-primary transition-smooth">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-primary transition-smooth">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+            {/* Mobile Menu Button */}
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => scrollToSection('download')}
+                className="bg-white text-secondary hover:bg-white/90 font-semibold shadow-medium hidden md:inline-flex"
+              >
+                Get the App
+              </Button>
+              <button
+                className="md:hidden text-white"
+                onClick={() => {
+                  const nav = document.querySelector('.mobile-nav');
+                  nav?.classList.toggle('hidden');
+                }}
+                aria-label="Toggle navigation"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
-          <ul className="hidden md:flex gap-8 text-white font-medium">
-            <li>
-              <button 
-                onClick={() => scrollToSection('features')} 
-                className="hover:text-primary transition-smooth"
+          {/* Mobile Navigation */}
+          <div className="mobile-nav hidden md:hidden mt-2 pb-4 border-t border-white/10">
+            <div className="flex flex-col gap-4 pt-4 text-white">
+              <button
+                onClick={() => {
+                  scrollToSection('features');
+                  const nav = document.querySelector('.mobile-nav');
+                  nav?.classList.add('hidden');
+                }}
+                className="text-left hover:text-primary transition-colors"
               >
                 Features
               </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => scrollToSection('about')} 
-                className="hover:text-primary transition-smooth"
+              <button
+                onClick={() => {
+                  scrollToSection('about');
+                  const nav = document.querySelector('.mobile-nav');
+                  nav?.classList.add('hidden');
+                }}
+                className="text-left hover:text-primary transition-colors"
               >
                 About
               </button>
-            </li>
-            <li>
-              <Link to="/careers" className="hover:text-primary transition-smooth">
+              <Link to="/careers" className="hover:text-primary transition-colors" onClick={() => {
+                const nav = document.querySelector('.mobile-nav');
+                nav?.classList.add('hidden');
+              }}>
                 Careers
               </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="hover:text-primary transition-smooth">
+              <Link to="/contact" className="hover:text-primary transition-colors" onClick={() => {
+                const nav = document.querySelector('.mobile-nav');
+                nav?.classList.add('hidden');
+              }}>
                 Contact
               </Link>
-            </li>
-          </ul>
-          <Button 
-            onClick={() => scrollToSection('download')} 
-            className="bg-white text-secondary hover:bg-white/90 font-semibold shadow-medium"
-          >
-            Get the App
-          </Button>
+              <Button
+                onClick={() => {
+                  scrollToSection('download');
+                  const nav = document.querySelector('.mobile-nav');
+                  nav?.classList.add('hidden');
+                }}
+                className="bg-white text-secondary hover:bg-white/90 font-semibold shadow-medium w-full"
+              >
+                Get the App
+              </Button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -192,14 +256,14 @@ const Index = () => {
                   <Mail className="h-6 w-6" />
                 </div>
                 <h3 className="font-semibold mb-2">Email</h3>
-                <p className="text-white/80">support@buyit.com</p>
+                <p className="text-white/80">buyit4all0910@gmail.com</p>
               </div>
               <div className="flex flex-col items-center">
                 <div className="bg-white/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
                   <Phone className="h-6 w-6" />
                 </div>
                 <h3 className="font-semibold mb-2">Phone</h3>
-                <p className="text-white/80">1-800-BUY-IT-NOW</p>
+                <p className="text-white/80">+91 94005 26562</p>
               </div>
               <div className="flex flex-col items-center">
                 <div className="bg-white/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
