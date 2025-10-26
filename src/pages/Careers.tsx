@@ -10,6 +10,7 @@ import { MapPin, Clock, Briefcase } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/Logo.png";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const jobs = [
   {
@@ -64,13 +65,34 @@ const Careers = () => {
     coverLetter: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Application Submitted!",
-      description: "Thank you for applying. We'll review your application and get back to you soon.",
-    });
-    setFormData({ name: "", email: "", phone: "", coverLetter: "" });
+    try {
+      await emailjs.send(
+        'service_cxw0c4j',
+        'template_kr6ccj7',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          cover_letter: formData.coverLetter,
+          job_title: selectedJob?.title || 'General Application',
+          to_email: 'buyit4all0910@gmail.com',
+        },
+        '0CPz3Mced8tPa0bIU'
+      );
+      toast({
+        title: "Application Submitted!",
+        description: "Thank you for applying. We'll review your application and get back to you soon.",
+      });
+      setFormData({ name: "", email: "", phone: "", coverLetter: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit application. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -87,7 +109,30 @@ const Careers = () => {
               <img src={logo} alt="BuyIt Logo" className="h-8 w-auto mr-2" />
               <span className="text-2xl font-bold text-primary">BuyIt</span>
             </Link>
-            <div className="flex gap-6">
+            <div className="hidden md:flex gap-6">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors">
+                Home
+              </Link>
+              <Link to="/careers" className="text-primary font-medium">
+                Careers
+              </Link>
+              <Link to="/contact" className="text-foreground hover:text-primary transition-colors">
+                Contact
+              </Link>
+            </div>
+            {/* Mobile Menu Button */}
+            <button className="md:hidden text-foreground" onClick={() => {
+              const nav = document.querySelector('.mobile-nav');
+              nav?.classList.toggle('hidden');
+            }}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+          {/* Mobile Navigation */}
+          <div className="mobile-nav hidden md:hidden mt-4 pb-4 border-t">
+            <div className="flex flex-col gap-4 pt-4">
               <Link to="/" className="text-foreground hover:text-primary transition-colors">
                 Home
               </Link>

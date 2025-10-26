@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/Logo.png";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const ContactUs = () => {
   const { toast } = useToast();
@@ -17,13 +18,33 @@ const ContactUs = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      await emailjs.send(
+        'service_cxw0c4j',
+        'template_6sgzaha',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'buyit4all0910@gmail.com',
+        },
+        '0CPz3Mced8tPa0bIU'
+      );
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,7 +61,30 @@ const ContactUs = () => {
               <img src={logo} alt="BuyIt Logo" className="h-8 w-auto mr-2" />
               <span className="text-2xl font-bold text-primary">BuyIt</span>
             </Link>
-            <div className="flex gap-6">
+            <div className="hidden md:flex gap-6">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors">
+                Home
+              </Link>
+              <Link to="/careers" className="text-foreground hover:text-primary transition-colors">
+                Careers
+              </Link>
+              <Link to="/contact" className="text-primary font-medium">
+                Contact
+              </Link>
+            </div>
+            {/* Mobile Menu Button */}
+            <button className="md:hidden text-foreground" onClick={() => {
+              const nav = document.querySelector('.mobile-nav');
+              nav?.classList.toggle('hidden');
+            }}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+          {/* Mobile Navigation */}
+          <div className="mobile-nav hidden md:hidden mt-4 pb-4 border-t">
+            <div className="flex flex-col gap-4 pt-4">
               <Link to="/" className="text-foreground hover:text-primary transition-colors">
                 Home
               </Link>
@@ -142,7 +186,7 @@ const ContactUs = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-muted-foreground">support@buyit.com</p>
+                    <p className="text-muted-foreground">buyit4all0910@gmail.com</p>
                   </div>
                 </div>
 
